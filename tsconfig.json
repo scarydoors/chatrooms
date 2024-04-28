@@ -1,18 +1,19 @@
 {
   "compilerOptions": {
+    "module": "ESNext",
     "importHelpers": true,
     "isolatedModules": true,
     "noEmit": true,
     "sourcemap": true,
     "paths": {
       "@/*": [
-        "resources/js/*"
+        "./resources/js/*"
       ]
     },
     "baseUrl": ".",
     "include": [
-      "resources/js/*"
-    ]
-  },
-  "extends": "@vue/tsconfig/tsconfig.json"
+      "./resources/js/**/*"
+    ],
+    "extends": "@vue/tsconfig/tsconfig.json"
+  }
 }

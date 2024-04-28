@@ -4,14 +4,16 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import './echo'
 import { createApp } from 'vue';
-
 import axios from 'axios';
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+import router from './router';
+
 import App from './App.vue';
 
-const app = createApp(App);
+const app = createApp(App).use(router);
 
 app.mount('#app');

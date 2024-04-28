@@ -1,7 +1,3 @@
 <template>
-  <div>
-    yo
-  </div>
+  <router-view></router-view>
 </template>
-<script lang="ts">
-</script>
