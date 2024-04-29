@@ -2,26 +2,26 @@
 
 namespace App\Events;
 
+use App\Http\Resources\ChatroomResource;
+use App\Models\Chatroom;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ChatroomCreated implements ShouldBroadcast
+class ChatroomCreatedEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public string $test;
+    public Chatroom $chatroom;
 
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public function __construct(Chatroom $chatroom)
     {
-        $this->test = 'what';
+        $this->chatroom = $chatroom;
     }
 
     /**
@@ -34,13 +34,13 @@ class ChatroomCreated implements ShouldBroadcast
         return new Channel('chatrooms');
     }
 
-    public function broadcaseAs(): string
+    public function broadcastAs(): string
     {
         return 'chatroom.created';
     }
 
-    public function broadcaseWith(): array
+    public function broadcastWith(): ChatroomResource
     {
-        return ['test' => $this->test];
+        return new ChatroomResource($this->chatroom);
     }
 }
